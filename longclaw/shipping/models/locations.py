@@ -1,17 +1,15 @@
 from django.db import models
-
 from wagtail.admin.panels import FieldPanel
-from wagtail.snippets.models import register_snippet
+from wagtail.models import Orderable
 
 
-@register_snippet
 class Address(models.Model):
     name = models.CharField(max_length=64)
     line_1 = models.CharField(max_length=128)
     line_2 = models.CharField(max_length=128, blank=True)
     city = models.CharField(max_length=64)
     postcode = models.CharField(max_length=10)
-    country = models.ForeignKey('shipping.Country', blank=True, null=True, on_delete=models.PROTECT)
+    country = models.ForeignKey('longclaw_shipping.Country', blank=True, null=True, on_delete=models.PROTECT)
 
     panels = [
         FieldPanel('name'),
@@ -23,10 +21,13 @@ class Address(models.Model):
     ]
 
     def __str__(self):
-        return "{}, {}, {}".format(self.name, self.city, self.country)
+        if self.line_2:
+            return "{}, {}, {}, {}, {}, {}".format(self.name, self.line_1, self.line_2, self.postcode, self.city, self.country)
+        else:
+            return "{}, {}, {}, {}, {}".format(self.name, self.line_1, self.postcode, self.city, self.country)
 
 
-class Country(models.Model):
+class Country(Orderable):
     """
     International Organization for Standardization (ISO) 3166-1 Country list
     Instance Variables:
@@ -45,11 +46,15 @@ class Country(models.Model):
     iso = models.CharField(max_length=2, primary_key=True)
     name_official = models.CharField(max_length=128)
     name = models.CharField(max_length=128)
-    sort_priority = models.PositiveIntegerField(default=0)
+
+    panels = [
+        FieldPanel('iso'),
+        FieldPanel('name_official'),
+        FieldPanel('name'),
+    ]
 
     class Meta:
         verbose_name_plural = 'Countries'
-        ordering = ('-sort_priority', 'name',)
 
     def __str__(self):
         """ Return the display form of the country name"""

@@ -21,5 +21,5 @@ class AddressForm(ModelForm):
             queryset = Country.objects.all()
         else:
             queryset = Country.objects.exclude(shippingrate=None)
-        self.fields['country'] = ModelChoiceField(queryset)
+        self.fields['country'] = ModelChoiceField(queryset=queryset, empty_label=None)
 

@@ -87,8 +87,11 @@ setup(
     ],
     include_package_data=True,
     install_requires=[
-        'django>=4.1,<4.3',
-        'wagtail>=4.1,<5.3',
+        "django~=4.2",
+        "django~=5.1",
+        "django~=5.2",
+        "django~=6.0",
+        "wagtail~=7.0",
         'django-countries',
         'django-extensions',
         'djangorestframework',
@@ -105,7 +108,6 @@ setup(
             "flake8>=3.6.0",
             "tox>=3.5.3",
             "codecov>=2.0.15",
-            
             "# Additional test requirements go here",
             "factory_boy>=2.11.1",
             "wagtail-factories>=1.1.0",

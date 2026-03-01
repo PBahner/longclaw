@@ -15,7 +15,7 @@ PAYMENT_GATEWAY = getattr(settings,
 # The product variant model to use. This allows custom implementations of
 # product models.
 PRODUCT_VARIANT_MODEL = getattr(
-    settings, 'PRODUCT_VARIANT_MODEL', 'products.ProductVariantBase')
+    settings, 'PRODUCT_VARIANT_MODEL', 'longclaw_products.ProductVariantBase')
 
 
 # Only required if using Stripe as the payment gateway

@@ -1,0 +1,56 @@
+{# templates/orders/order_detail.html #}
+{% extends "wagtailadmin/base.html" %}
+{% load wagtailadmin_tags %}
+
+{% block titletag %}{{ object }}{% endblock %}
+
+{% block content %}
+  {% include "wagtailadmin/shared/breadcrumbs.html" with items=breadcrumbs_items %}
+  {% include "wagtailadmin/shared/header.html" with title=object icon="list" %}
+
+  <div class="nice-padding">
+    <section class="w-panel">
+      <h2>Order items</h2>
+      <table class="listing">
+        <thead>
+          <tr class="table-headers">
+            <th>Product</th>
+            <th>Amount</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in items %}
+            <tr>
+              <td>{{ item.product }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.total }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+        <tfoot>
+          <tr class="table-footers">
+            <td>Total</td>
+            <td>{{ object.total_items }}</td>
+            <td>{{ object.total }}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </section>
+
+    <section class="w-panel">
+      <div class="w-panel__content">
+        <form method="post">
+          {% csrf_token %}
+            {{ form.media }}
+            {% for field in form %}
+                {% include "wagtailadmin/shared/field.html" with field=field %}
+            {% endfor %}
+            <button type="submit" class="button button-primary">
+              Save changes
+            </button>
+        </form>
+      </div>
+    </section>
+  </div>
+{% endblock %}

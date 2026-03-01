@@ -42,6 +42,7 @@ class ProductVariantBase(models.Model):
 
     class Meta:
         abstract = True
+        swappable = "PRODUCT_VARIANT_MODEL"
 
     def __str__(self):
         try:

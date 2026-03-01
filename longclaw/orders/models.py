@@ -54,7 +54,10 @@ class Order(models.Model):
     def total_items(self):
         """The number of individual items on the order
         """
-        return self.items.count()
+        total = 0
+        for item in self.items.all():
+            total += item.quantity
+        return total
 
 
     def refund(self):
@@ -82,6 +85,14 @@ class Order(models.Model):
             self.refund()
         self.status = self.CANCELLED
         self.save()
+
+    class Meta:
+        permissions = [
+            ("fulfill_order", "Can fulfill orders"),
+            ("cancel_order", "Can cancel orders"),
+            ("refund_order", "Can refund orders"),
+        ]
+
 
 class OrderItem(models.Model):
     product = models.ForeignKey(PRODUCT_VARIANT_MODEL, on_delete=models.DO_NOTHING)

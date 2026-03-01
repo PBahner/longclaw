@@ -20,10 +20,10 @@ class ShippingRate(models.Model):
     rate = models.DecimalField(max_digits=12, decimal_places=2)
     carrier = models.CharField(max_length=64)
     description = models.CharField(max_length=128)
-    countries = models.ManyToManyField('shipping.Country')
+    countries = models.ManyToManyField('longclaw_shipping.Country')
     basket_id = models.CharField(blank=True, db_index=True, max_length=32)
-    destination = models.ForeignKey('shipping.Address', blank=True, null=True, on_delete=models.PROTECT)
-    processor = models.ForeignKey('shipping.ShippingRateProcessor', blank=True, null=True, on_delete=models.PROTECT)
+    destination = models.ForeignKey('longclaw_shipping.Address', blank=True, null=True, on_delete=models.PROTECT)
+    processor = models.ForeignKey('longclaw_shipping.ShippingRateProcessor', blank=True, null=True, on_delete=models.PROTECT)
 
     panels = [
         FieldPanel('name'),

@@ -1,8 +1,6 @@
 {% load wagtailadmin_tags %}
 <section class="w-summary" aria-labelledby="header-title">
-    <div class="help-block help-info">
-        <p>Longclaw Summary</p>
-      </div>
+  <h2 class="w-h2">Longclaw Summary</h2>
   <ul class="w-summary__list">
     <li>
         {% icon name="warning" %}
@@ -17,7 +15,7 @@
         </a>
     </li>
     <li>
-        {% icon name="tick" %}
+        {% icon name="tick-inverse" %}
         <a href="{{ sales_count.url }}">
             <span>{{ sales_count.total }}</span> {{ sales_count.label }}
         </a>

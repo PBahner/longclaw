@@ -21,7 +21,7 @@ class BasketViewSet(viewsets.ModelViewSet):
         items, _ = utils.get_basket_items(request or self.request)
         return items
 
-    def create(self, request):
+    def create(self, request, *args, **kwargs):
         """
         Add an item to the basket
         """
@@ -47,7 +47,7 @@ class BasketViewSet(viewsets.ModelViewSet):
             serializer = BasketItemSerializer(self.get_queryset(request), many=True)
             response = Response(data=serializer.data,
                                 status=status.HTTP_201_CREATED)
-            
+
             basket_modified.send(sender=BasketItem, basket_id=bid)
 
         else:
@@ -71,17 +71,17 @@ class BasketViewSet(viewsets.ModelViewSet):
         serializer = BasketItemSerializer(self.get_queryset(request), many=True)
         response = Response(data=serializer.data,
                             status=status.HTTP_200_OK)
-        
+
         basket_modified.send(sender=BasketItem, basket_id=bid)
-        
+
         return response
 
-    def destroy(self, request, variant_id=None):
+    def destroy(self, request, variant_id=None, *args, **kwargs):
         """
         Remove an item from the basket
         """
         bid = utils.basket_id(request)
-        
+
         variant = ProductVariant.objects.get(id=variant_id)
         quantity = int(request.data.get("quantity", 1))
         try:
@@ -94,10 +94,10 @@ class BasketViewSet(viewsets.ModelViewSet):
         serializer = BasketItemSerializer(self.get_queryset(request), many=True)
         response = Response(data=serializer.data,
                         status=status.HTTP_200_OK)
-        
+
         basket_modified.send(sender=BasketItem, basket_id=bid)
-        
-        return response 
+
+        return response
 
     @action(detail=False, methods=['get'])
     def total_items(self, request):

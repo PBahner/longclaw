@@ -3,21 +3,27 @@
 History
 -------
 
-Unreleased
+Unreleased (2026-03-01)
 +++++++++++
 
 Modernise the project for later versions of python, Django and Wagtail.
 The aim is to support modern versions of Django and Wagtail and continue to use the existing tests to ensure compatibility.
 
-* Django >= 4.1, <= 4.2
-* Wagtail >= 4.1, <= 5.2
-* Python >= 3.9, <= 3.11
-* Fixes the api url to be at the root of the domain
+* Django 4.2 | 5.1 | 5.2 | 6.0
+* Wagtail 7.x
+* Python >= 3.9, <= 3.14
+* fixes the api url to be at the root of the domain
+* remove dependency on model-admin, use Snippets and Wagtail's admin interface instead. Recreate the order management interface using wagtails ListView and a custom detail page.
+* rename project apps and recreate migrations for database tables to use the \"longclaw\_\" prefix to avoid confusion with other apps.
+* added more granular permissions for actions on orders (cancel, refund, fulfill).
 
 
 TODO: These are parts of the project that need further work.
 
-* Currently it may not be possible to use the longclaw.contrib apps
+* currently it may not be possible to use the longclaw.contrib apps??
+* update project template
+* update tests
+* update documentation
 
 1.0.0
 +++++++++++

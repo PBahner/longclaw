@@ -1,6 +1,7 @@
 import datetime
 
 from django.template.loader import render_to_string
+from django.utils.safestring import mark_safe
 
 from wagtail import hooks
 from wagtail.admin.ui.components import Component
@@ -12,14 +13,14 @@ from longclaw.utils import ProductVariant, maybe_get_product_model
 
 
 class LongclawSiteSummary(Component):
-    order = 100
+    order = 250
 
     def outstanding_orders(self, parent_context):
         orders = Order.objects.filter(status=Order.SUBMITTED)
         return {
             "total": orders.count(),
             "label": "Outstanding Orders",
-            "url": "/admin/orders/order/",
+            "url": "/admin/orders/",
         }
 
     def product_count(self, parent_context):
@@ -37,9 +38,9 @@ class LongclawSiteSummary(Component):
         settings = Configuration.for_request(parent_context["request"])
         sales = stats.sales_for_time_period(*stats.current_month())
         return {
-            "total": f"{settings.currency_html_code}{sum(order.total for order in sales)}",
+            "total": mark_safe(f"{settings.currency_html_code}{sum(order.total for order in sales)}"),
             "label": "In sales this month",
-            "url": "/admin/orders/order/",
+            "url": "/admin/orders/",
         }
 
     def render_html(self, parent_context):
@@ -59,7 +60,7 @@ def site_summary_panel(request, panels):
 
 
 class LongclawStatsPanel(Component):
-    order = 110
+    order = 260
     template_name = "stats/stats_panel.html"
 
     def get_context(self):
