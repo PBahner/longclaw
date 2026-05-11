@@ -147,7 +147,7 @@ class ApiEndpoint {
 
   del(config = {}) {
     const url = this.composeUrl(config);
-    return del(url);
+    return del(url, config.data);
   }
 
   /***************************
