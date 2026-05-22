@@ -1,0 +1,43 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-22 06:28-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: longclaw/shipping/forms.py:11
+msgid "Name"
+msgstr "Name"
+
+#: longclaw/shipping/forms.py:12
+msgid "Line 1"
+msgstr "Straße und Hausnummer"
+
+#: longclaw/shipping/forms.py:13
+msgid "Line 2"
+msgstr "Adresszusatz"
+
+#: longclaw/shipping/forms.py:14
+msgid "City"
+msgstr "Ort"
+
+#: longclaw/shipping/forms.py:15
+msgid "Postcode"
+msgstr "Postleizahl"
+
+#: longclaw/shipping/forms.py:16 longclaw/shipping/forms.py:33
+msgid "Country"
+msgstr "Land"
