@@ -32,3 +32,24 @@ class AddressForm(ModelForm):
             queryset = Country.objects.exclude(shippingrate=None)
         self.fields['country'] = ModelChoiceField(label=_('Country'), queryset=queryset, empty_label=None)
 
+    def save(self, commit=True):
+        """
+        override the default save method to check if an address with the same details already exists,
+        and if so return that instead of creating a new one
+        """
+
+        cleaned = self.cleaned_data
+
+        lookup = dict(
+            name=cleaned["name"],
+            line_1=cleaned["line_1"],
+            line_2=cleaned.get("line_2", ""),
+            city=cleaned["city"],
+            postcode=cleaned["postcode"],
+            country=cleaned.get("country"),
+        )
+
+        instance, created = Address.objects.get_or_create(**lookup)
+
+        return instance
+
