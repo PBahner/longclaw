@@ -95,6 +95,9 @@ def create_order(email,
         )
         order_item.save()
 
+    order.decrease_stock()
+    order.save()
+
     if capture_payment:
         desc = 'Payment from {} for order id #{}'.format(email, order.id)
         try:

@@ -1,7 +1,10 @@
 from datetime import datetime
 from django.db import models
+from django.db.models import F
+from longclaw.configuration.models import Configuration
 from longclaw.settings import PRODUCT_VARIANT_MODEL
 from longclaw.shipping.models import Address
+from wagtail.models import Site
 
 class Order(models.Model):
     SUBMITTED = 1
@@ -18,6 +21,7 @@ class Order(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=ORDER_STATUSES, default=SUBMITTED)
     status_note = models.CharField(max_length=128, blank=True, null=True)
+    stock_updated = models.BooleanField(default=False)
 
     transaction_id = models.CharField(max_length=256, blank=True, null=True)
 
@@ -68,6 +72,7 @@ class Order(models.Model):
         if GATEWAY.issue_refund(self.transaction_id, self.total):
             self.status = self.REFUNDED
             self.status_note = "Refunded on {}".format(now)
+            self.increase_stock()
         else:
             self.status_note = "Refund failed on {}".format(now)
         self.save()
@@ -76,6 +81,7 @@ class Order(models.Model):
         """Mark this order as being fulfilled
         """
         self.status = self.FULFILLED
+        self.decrease_stock()
         self.save()
 
     def cancel(self, refund=True):
@@ -84,7 +90,30 @@ class Order(models.Model):
         if refund:
             self.refund()
         self.status = self.CANCELLED
+        self.increase_stock()
         self.save()
+
+    def decrease_stock(self):
+        site = Site.objects.get(is_default_site=True)
+        configuration = Configuration.for_site(site)
+        if self.stock_updated or not configuration.enable_automatic_stock:
+            return
+        for item in self.items.all():
+            product = item.product
+            product.stock = F('stock') - item.quantity
+            product.save()
+        self.stock_updated = True
+
+    def increase_stock(self):
+        site = Site.objects.get(is_default_site=True)
+        configuration = Configuration.for_site(site)
+        if not self.stock_updated or not configuration.enable_automatic_stock:
+            return
+        for item in self.items.all():
+            product = item.product
+            product.stock = F('stock') + item.quantity
+            product.save()
+        self.stock_updated = False
 
     class Meta:
         permissions = [

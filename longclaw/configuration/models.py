@@ -40,13 +40,19 @@ class Configuration(BaseSiteSetting):
         help_text="The iso currency code to use for payments"
     )
 
+    enable_automatic_stock = models.BooleanField(
+        default=True,
+        help_text='If this is enabled, the products stock will automatically be updated when an order is placed.'
+    )
+
     panels = (
         FieldPanel('default_shipping_rate'),
         FieldPanel('default_shipping_carrier'),
         FieldPanel('default_shipping_enabled'),
         FieldPanel('shipping_origin'),
         FieldPanel('currency_html_code'),
-        FieldPanel('currency')
+        FieldPanel('currency'),
+        FieldPanel('enable_automatic_stock'),
     )
 
     class Meta:
