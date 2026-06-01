@@ -72,3 +72,21 @@ class ProductVariantBase(models.Model):
             return self.product.title
         except AttributeError:
             return self.ref
+
+    def delete(self, *args, **kwargs):
+        # prevent deletion if this variant has been used in an order
+        if not self.orderitem_set.exists():
+            super().delete()
+
+    """
+    # optionally you can implement a soft delete
+    is_active = models.BooleanField(default=True)
+    # override in your variant model:
+    def delete(self, *args, **kwargs):
+        if self.orderitem_set.exists():
+            self.is_active = False
+            self.save(update_fields=["is_active"])
+        super().delete(*args, **kwargs)
+    class Meta:
+        ordering = ("-is_active",)
+    """
