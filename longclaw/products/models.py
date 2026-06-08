@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from wagtail.models import Page
 
 
@@ -11,6 +12,8 @@ class ProductBase(Page):
 
     class Meta:
         abstract = True
+        verbose_name = _("Product")
+        verbose_name_plural = _("Products")
 
     def __str__(self):
         return self.title
@@ -36,13 +39,15 @@ class ProductVariantBase(models.Model):
     """
     Base model for creating product variants
     """
-    base_price = models.DecimalField(max_digits=12, decimal_places=2)
-    ref = models.CharField(max_length=32)
-    stock = models.IntegerField(default=0)
+    base_price = models.DecimalField(max_digits=12, decimal_places=2, verbose_name=_("Base price"))
+    ref = models.CharField(max_length=32, verbose_name=_("Reference"))
+    stock = models.IntegerField(default=0, verbose_name=_("Stock"))
 
     class Meta:
         abstract = True
         swappable = "PRODUCT_VARIANT_MODEL"
+        verbose_name = _("Product Variant")
+        verbose_name_plural = _("Product Variants")
 
     def __str__(self):
         try:

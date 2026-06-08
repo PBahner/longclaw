@@ -1,15 +1,21 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from wagtail.admin.panels import FieldPanel
 from wagtail.models import Orderable
 
 
 class Address(models.Model):
-    name = models.CharField(max_length=64)
-    line_1 = models.CharField(max_length=128)
-    line_2 = models.CharField(max_length=128, blank=True)
-    city = models.CharField(max_length=64)
-    postcode = models.CharField(max_length=10)
-    country = models.ForeignKey('longclaw_shipping.Country', blank=True, null=True, on_delete=models.PROTECT)
+    name = models.CharField(max_length=64, verbose_name=_("Name"))
+    line_1 = models.CharField(max_length=128, verbose_name=_("Line 1"))
+    line_2 = models.CharField(max_length=128, blank=True, verbose_name=_("Line 2"))
+    city = models.CharField(max_length=64, verbose_name=_("City"))
+    postcode = models.CharField(max_length=10, verbose_name=_("Postcode"))
+    country = models.ForeignKey(
+        'longclaw_shipping.Country',
+        blank=True, null=True,
+        on_delete=models.PROTECT,
+        verbose_name=_("Country"),
+    )
 
     panels = [
         FieldPanel('name'),
@@ -19,6 +25,10 @@ class Address(models.Model):
         FieldPanel('postcode'),
         FieldPanel('country')
     ]
+
+    class Meta:
+        verbose_name = _("Address")
+        verbose_name_plural = _("Addresses")
 
     def __str__(self):
         if self.line_2:
@@ -43,9 +53,9 @@ class Country(Orderable):
     country_grabber.py's priority dictionary and run it to regenerate
     the json
     """
-    iso = models.CharField(max_length=2, primary_key=True)
-    name_official = models.CharField(max_length=128)
-    name = models.CharField(max_length=128)
+    iso = models.CharField(max_length=2, primary_key=True, verbose_name=_("ISO"))
+    name_official = models.CharField(max_length=128, verbose_name=_("Name of Official"))
+    name = models.CharField(max_length=128, verbose_name=_("Name of Country"))
 
     panels = [
         FieldPanel('iso'),
@@ -54,7 +64,8 @@ class Country(Orderable):
     ]
 
     class Meta:
-        verbose_name_plural = 'Countries'
+        verbose_name = _("Country")
+        verbose_name_plural = _("Countries")
 
     def __str__(self):
         """ Return the display form of the country name"""

@@ -1,4 +1,5 @@
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 
 from wagtail import hooks
 from wagtail.admin import widgets
@@ -16,7 +17,7 @@ def product_requests_button(page, page_perms, is_parent=False):
     #  member or will be an instance of longclaw.utils.ProductVariant
     if hasattr(page, 'variants') or isinstance(page, ProductVariant):
         yield widgets.PageListingButton(
-            'View Requests',
+            _("View Requests"),
             reverse('productrequests_admin', kwargs={'pk': page.id}),
             priority=40
         )

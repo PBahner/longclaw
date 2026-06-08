@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse, re_path, path
 from django.shortcuts import redirect, get_object_or_404
 from django.views import View
+from django.utils.translation import gettext_lazy as _
 from wagtail.admin import messages
 
 from wagtail.admin.ui.tables import UpdatedAtColumn
@@ -17,7 +18,7 @@ class FulfillOrderView(PermissionRequiredMixin, View):
     raise_exception = False
 
     def handle_no_permission(self):
-        messages.error(self.request, "You do not have permission to fulfill orders.")
+        messages.error(self.request, _("You do not have permission to fulfill orders."))
         return redirect(reverse("orders:list"))
 
     def get(self, request, pk, *args, **kwargs):
@@ -28,9 +29,9 @@ class FulfillOrderView(PermissionRequiredMixin, View):
 
         try:
             order.fulfill()
-            messages.success(request, f"Order #{order.pk} has been fulfilled.")
+            messages.success(request, _("Order #{order_id} has been successfully fulfilled").format(order_id=order.pk))
         except Exception as exc:
-            messages.error(request, f"Failed to fulfill order #{order.pk}: {exc}")
+            messages.error(request, _("Failed to fulfill order #{order_id}: {exc}").format(order_id=order.pk, exc=exc))
 
         return redirect(reverse("orders:list"))
 
@@ -40,7 +41,7 @@ class CancelOrderView(PermissionRequiredMixin, View):
     raise_exception = False
 
     def handle_no_permission(self):
-        messages.error(self.request, "You do not have permission to cancel orders.")
+        messages.error(self.request, _("You do not have permission to cancel orders."))
         return redirect(reverse("orders:list"))
 
     def get(self, request, pk, *args, **kwargs):
@@ -51,9 +52,9 @@ class CancelOrderView(PermissionRequiredMixin, View):
 
         try:
             order.cancel()
-            messages.success(request, f"Order #{order.pk} has been cancelled.")
+            messages.success(request, _("Order #{order_id} has been successfully cancelled").format(order_id=order.pk))
         except Exception as exc:
-            messages.error(request, f"Failed to cancel order #{order.pk}: {exc}")
+            messages.error(request, _("Failed to cancel order #{order_id}: {exc}").format(order_id=order.pk, exc=exc))
 
         return redirect(reverse("orders:list"))
 
@@ -63,7 +64,7 @@ class RefundOrderView(PermissionRequiredMixin, View):
     raise_exception = False
 
     def handle_no_permission(self):
-        messages.error(self.request, "You do not have permission to refund orders.")
+        messages.error(self.request, _("You do not have permission to refund orders."))
         return redirect(reverse("orders:list"))
 
     def get(self, request, pk, *args, **kwargs):
@@ -74,9 +75,9 @@ class RefundOrderView(PermissionRequiredMixin, View):
 
         try:
             order.refund()
-            messages.success(request, f"Order #{order.pk} has been refunded.")
+            messages.success(request, _("Order #{order_id} has been successfully refunded").format(order_id=order.pk))
         except Exception as exc:
-            messages.error(request, f"Failed to refund order #{order.pk}: {exc}")
+            messages.error(request, _("Failed to refund order #{order_id}: {exc}").format(order_id=order.pk, exc=exc))
 
         return redirect(reverse("orders:list"))
 
@@ -84,7 +85,7 @@ class RefundOrderView(PermissionRequiredMixin, View):
 class OrderViewSet(ViewSet):
     model = Order
     icon = "list-ul"
-    menu_label = "Orders"
+    menu_label = _("Orders")
     menu_order = 100
     add_to_admin_menu = True
 

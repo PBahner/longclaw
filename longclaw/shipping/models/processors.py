@@ -5,6 +5,7 @@ from django.utils.encoding import force_bytes, force_str
 from django.core.cache import cache
 from django.core.serializers.json import DjangoJSONEncoder
 from django.db import models, transaction
+from django.utils.translation import gettext_lazy as _
 
 from longclaw.basket.models import BasketItem
 from polymorphic.models import PolymorphicModel
@@ -13,7 +14,7 @@ from ..serializers.locations import AddressSerializer
 
 
 class ShippingRateProcessor(PolymorphicModel):
-    countries = models.ManyToManyField('longclaw_shipping.Country')
+    countries = models.ManyToManyField('longclaw_shipping.Country', verbose_name=_("Countries"))
 
     rates_cache_timeout = 300
     def get_rates(self, settings=None, basket_id=None, destination=None):

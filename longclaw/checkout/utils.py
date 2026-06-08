@@ -1,6 +1,7 @@
 from decimal import Decimal
 from django.utils.module_loading import import_string
 from django.utils import timezone
+from django.utils.translation import gettext as _
 from ipware import get_client_ip
 
 from longclaw.basket.utils import get_basket_items, destroy_basket
@@ -34,14 +35,13 @@ def create_order(email,
         shipping_country = addresses['shipping_address_country']
         if not shipping_country:
             shipping_country = None
-        shipping_address, _ = Address.objects.get_or_create(name=shipping_name,
-                                                            line_1=addresses[
-                                                                'shipping_address_line1'],
-                                                            city=addresses[
-                                                                'shipping_address_city'],
-                                                            postcode=addresses[
-                                                                'shipping_address_zip'],
-                                                            country=shipping_country)
+        shipping_address, _created = Address.objects.get_or_create(
+            name=shipping_name,
+            line_1=addresses['shipping_address_line1'],
+            city=addresses['shipping_address_city'],
+            postcode=addresses['shipping_address_zip'],
+            country=shipping_country
+        )
         shipping_address.save()
         try:
             billing_name = addresses['billing_name']
@@ -50,14 +50,13 @@ def create_order(email,
         billing_country = addresses['shipping_address_country']
         if not billing_country:
             billing_country = None
-        billing_address, _ = Address.objects.get_or_create(name=billing_name,
-                                                           line_1=addresses[
-                                                               'billing_address_line1'],
-                                                           city=addresses[
-                                                               'billing_address_city'],
-                                                           postcode=addresses[
-                                                               'billing_address_zip'],
-                                                           country=billing_country)
+        billing_address, _created = Address.objects.get_or_create(
+            name=billing_name,
+            line_1=addresses['billing_address_line1'],
+            city=addresses['billing_address_city'],
+            postcode=addresses['billing_address_zip'],
+            country=billing_country
+        )
         billing_address.save()
     else:
         shipping_country = shipping_address.country
@@ -99,11 +98,13 @@ def create_order(email,
     order.save()
 
     if capture_payment:
-        desc = 'Payment from {} for order id #{}'.format(email, order.id)
+        desc = _("Payment from {email} for order id #{order_id}").format(email=email, order_id=order.id)
         try:
-            transaction_id = GATEWAY.create_payment(request,
-                                                    total + shipping_rate,
-                                                    description=desc)
+            transaction_id = GATEWAY.create_payment(
+                request,
+                total + shipping_rate,
+                description=desc
+            )
             order.payment_date = timezone.now()
             order.transaction_id = transaction_id
             # Once the order has been successfully taken, we can empty the basket

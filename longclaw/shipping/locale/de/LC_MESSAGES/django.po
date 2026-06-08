@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-22 06:28-0500\n"
+"POT-Creation-Date: 2026-06-08 15:55-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,26 +18,106 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: longclaw/shipping/forms.py:11
+#: longclaw/shipping/forms.py:25 longclaw/shipping/models/locations.py:17
+#: longclaw/shipping/models/locations.py:67
+msgid "Country"
+msgstr "Land"
+
+#: longclaw/shipping/models/locations.py:8 longclaw/shipping/models/rates.py:19
 msgid "Name"
 msgstr "Name"
 
-#: longclaw/shipping/forms.py:12
+#: longclaw/shipping/models/locations.py:9
 msgid "Line 1"
 msgstr "Straße und Hausnummer"
 
-#: longclaw/shipping/forms.py:13
+#: longclaw/shipping/models/locations.py:10
 msgid "Line 2"
 msgstr "Adresszusatz"
 
-#: longclaw/shipping/forms.py:14
+#: longclaw/shipping/models/locations.py:11
 msgid "City"
 msgstr "Ort"
 
-#: longclaw/shipping/forms.py:15
+#: longclaw/shipping/models/locations.py:12
 msgid "Postcode"
 msgstr "Postleizahl"
 
-#: longclaw/shipping/forms.py:16 longclaw/shipping/forms.py:33
-msgid "Country"
-msgstr "Land"
+#: longclaw/shipping/models/locations.py:30
+msgid "Address"
+msgstr "Adresse"
+
+#: longclaw/shipping/models/locations.py:31
+#: longclaw/shipping/wagtail_hooks.py:15
+msgid "Addresses"
+msgstr "Adressen"
+
+#: longclaw/shipping/models/locations.py:56
+msgid "ISO"
+msgstr ""
+
+#: longclaw/shipping/models/locations.py:57
+msgid "Name of Official"
+msgstr "Offizieller Name"
+
+#: longclaw/shipping/models/locations.py:58
+msgid "Name of Country"
+msgstr "Name des Landes"
+
+#: longclaw/shipping/models/locations.py:68
+#: longclaw/shipping/models/processors.py:17
+#: longclaw/shipping/models/rates.py:25
+msgid "Countries"
+msgstr "Länder"
+
+#: longclaw/shipping/models/rates.py:20
+msgid "Unique name to refer to this shipping rate by"
+msgstr "Eindeutiger Name für diese Versandkategorie"
+
+#: longclaw/shipping/models/rates.py:22
+msgid "Rate"
+msgstr "Kosten"
+
+#: longclaw/shipping/models/rates.py:23
+msgid "Carrier"
+msgstr "Dienstleister"
+
+#: longclaw/shipping/models/rates.py:24
+msgid "Description"
+msgstr "Beschreibung"
+
+#: longclaw/shipping/models/rates.py:26
+msgid "Basket ID"
+msgstr "Warenkorb ID"
+
+#: longclaw/shipping/models/rates.py:31
+msgid "Destination"
+msgstr "Zieladresse"
+
+#: longclaw/shipping/models/rates.py:37
+msgid "Processor"
+msgstr "Versandkostenverarbeiter"
+
+#: longclaw/shipping/models/rates.py:49
+msgid "Shipping Rate"
+msgstr "Versandkosten"
+
+#: longclaw/shipping/models/rates.py:50 longclaw/shipping/wagtail_hooks.py:24
+msgid "Shipping Rates"
+msgstr "Versandkosten"
+
+#: longclaw/shipping/utils.py:29
+msgid "Standard shipping to rest of world"
+msgstr "Standardversand für den Rest der Welt"
+
+#: longclaw/shipping/wagtail_hooks.py:33
+msgid "Shipping Countries"
+msgstr "Versandländer"
+
+#: longclaw/shipping/wagtail_hooks.py:69
+msgid "General"
+msgstr "Allgemein"
+
+#: longclaw/shipping/wagtail_hooks.py:96
+msgid "Shop Settings"
+msgstr "Shop Einstellungen"

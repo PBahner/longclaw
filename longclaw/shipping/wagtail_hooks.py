@@ -1,4 +1,5 @@
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 from wagtail import hooks
 from wagtail.admin.menu import SubmenuMenuItem, Menu, MenuItem
 from wagtail.snippets.models import register_snippet
@@ -11,7 +12,7 @@ from longclaw.shipping.models import ShippingRate, Country, Address
 class AddressViewSet(SnippetViewSet):
     model = Address
     icon = "form"
-    menu_label = "Addresses"
+    menu_label = _("Addresses")
     menu_order = 210
     add_to_admin_menu = True
     list_display = ("name", "line_1", "line_2", "city", "postcode", "country")
@@ -20,7 +21,7 @@ class AddressViewSet(SnippetViewSet):
 class ShippingRateViewSet(SnippetViewSet):
     model = ShippingRate
     icon = "site"
-    menu_label = "Shipping Rate"
+    menu_label = _("Shipping Rates")
     menu_order = 220
     add_to_admin_menu = True
     list_display = ("name", "rate", "carrier", "description")
@@ -29,7 +30,7 @@ class ShippingRateViewSet(SnippetViewSet):
 class CountryViewSet(SnippetViewSet):
     model = Country
     icon = "globe"
-    menu_label = "Shipping Countries"
+    menu_label = _("Shipping Countries")
     menu_order = 230
     add_to_admin_menu = True
     list_display = ("iso", "name_official", "name")
@@ -65,7 +66,7 @@ def register_shop_menu(request, menu_items):
         )
         submenu_items.append(
             MenuItem(
-                "General",
+                _("General"),
                 config_edit_url,
                 icon_name="cog"
             ),
@@ -92,7 +93,7 @@ def register_shop_menu(request, menu_items):
     if submenu_items:
         menu_items.append(
             SubmenuMenuItem(
-                "Shop Settings",
+                _("Shop Settings"),
                 Menu(items=submenu_items),
                 icon_name="cogs",
                 order=10000,

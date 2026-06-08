@@ -1,0 +1,75 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-08 15:56-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: longclaw/contrib/productrequests/models.py:10
+#: longclaw/contrib/productrequests/templates/productrequests/requests_admin.html:39
+msgid "Variant"
+msgstr "Variante"
+
+#: longclaw/contrib/productrequests/models.py:14
+msgid "Created date"
+msgstr "Datum"
+
+#: longclaw/contrib/productrequests/models.py:19
+#: longclaw/contrib/productrequests/templates/productrequests/requests_admin.html:40
+msgid "Email"
+msgstr "E-Mail"
+
+#: longclaw/contrib/productrequests/models.py:20
+msgid "Optional email of the customer who made the request"
+msgstr "Optionale E-Mail des Kunden, der die Anfrage gestellt hat"
+
+#: longclaw/contrib/productrequests/models.py:24
+msgid "Product Request"
+msgstr "Produktanfrage"
+
+#: longclaw/contrib/productrequests/models.py:25
+msgid "Product Requests"
+msgstr "Produktanfragen"
+
+#: longclaw/contrib/productrequests/templates/productrequests/requests_admin.html:6
+#, python-format
+msgid "Requests For %(page_type)s: %(title)s"
+msgstr "Anfragen für %(page_type)s: %(title)s"
+
+#: longclaw/contrib/productrequests/templates/productrequests/requests_admin.html:17
+#, python-format
+msgid "Requests For %(page_type)s <span>%(title)s</span>"
+msgstr "Anfragen für %(page_type)s <span>%(title)s</span>"
+
+#: longclaw/contrib/productrequests/templates/productrequests/requests_admin.html:20
+msgid "Status"
+msgstr "Status"
+
+#: longclaw/contrib/productrequests/templates/productrequests/requests_admin.html:38
+msgid "Request Date"
+msgstr "Datum der Anfrage"
+
+#: longclaw/contrib/productrequests/templates/productrequests/requests_admin.html:48
+msgid "Not Given"
+msgstr "nicht angegeben"
+
+#: longclaw/contrib/productrequests/templatetags/productrequests_tags.py:8
+msgid "Request Product"
+msgstr "angefragtes Produkt"
+
+#: longclaw/contrib/productrequests/wagtail_hooks.py:20
+msgid "View Requests"
+msgstr "Anfragen ansehen"

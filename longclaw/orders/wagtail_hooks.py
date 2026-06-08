@@ -1,4 +1,5 @@
 from django.contrib.auth.models import Permission
+from django.utils.translation import gettext_lazy as _
 from wagtail import hooks
 
 from longclaw.orders.admin import OrderViewSet
@@ -32,7 +33,7 @@ def hide_orders_menu_for_restricted_users(request, menu_items):
         # Remove the Orders menu item if it exists
         menu_items[:] = [
             item for item in menu_items
-            if getattr(item, "label", "") != "Orders"
+            if getattr(item, "label", "") != _("Orders")
         ]
 
 

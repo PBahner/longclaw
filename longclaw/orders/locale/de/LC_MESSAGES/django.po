@@ -1,0 +1,224 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-08 16:01-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: longclaw/orders/admin.py:21
+msgid "You do not have permission to fulfill orders."
+msgstr "Du hast keine Berechtigung, Bestellungen auf \"bezahlt\" zu setzen."
+
+#: longclaw/orders/admin.py:32
+#, python-brace-format
+msgid "Order #{order_id} has been successfully fulfilled"
+msgstr "Bestellung #{order_id} wurde erfolgreich auf \"bezahlt\" gesetzt."
+
+#: longclaw/orders/admin.py:34
+#, python-brace-format
+msgid "Failed to fulfill order #{order_id}: {exc}"
+msgstr ""
+"Bestellung #{order_id} konnte nicht auf \"bezahlt\" gesetzt werden: {exc}"
+
+#: longclaw/orders/admin.py:44
+msgid "You do not have permission to cancel orders."
+msgstr "Du hast keine Berechtigung, Bestellungen zu stornieren."
+
+#: longclaw/orders/admin.py:55
+#, python-brace-format
+msgid "Order #{order_id} has been successfully cancelled"
+msgstr "Bestellung #{order_id} wurde erfolgreich storniert."
+
+#: longclaw/orders/admin.py:57
+#, python-brace-format
+msgid "Failed to cancel order #{order_id}: {exc}"
+msgstr "Bestellung #{order_id} konnte nicht storniert werden: {exc}"
+
+#: longclaw/orders/admin.py:67
+msgid "You do not have permission to refund orders."
+msgstr "Du hast keine Berechtigung, Bestellungen zurückzuerstatten."
+
+#: longclaw/orders/admin.py:78
+#, python-brace-format
+msgid "Order #{order_id} has been successfully refunded"
+msgstr "Bestellung #{order_id} wurde erfolgreich zurückerstattet."
+
+#: longclaw/orders/admin.py:80
+#, python-brace-format
+msgid "Failed to refund order #{order_id}: {exc}"
+msgstr "Bestellung #{order_id} konnte nicht zurückerstattet werden: {exc}"
+
+#: longclaw/orders/admin.py:88 longclaw/orders/models.py:133
+#: longclaw/orders/views.py:90 longclaw/orders/views.py:155
+#: longclaw/orders/wagtail_hooks.py:36
+msgid "Orders"
+msgstr "Bestellungen"
+
+#: longclaw/orders/models.py:21 longclaw/orders/views.py:112
+msgid "Payment date"
+msgstr "Bezahlungsdatum"
+
+#: longclaw/orders/models.py:22 longclaw/orders/views.py:111
+msgid "Created date"
+msgstr "Bestelldatum"
+
+#: longclaw/orders/models.py:23 longclaw/orders/views.py:108
+msgid "Status"
+msgstr "Status"
+
+#: longclaw/orders/models.py:24 longclaw/orders/views.py:109
+msgid "Status note"
+msgstr "Statusnotiz"
+
+#: longclaw/orders/models.py:25
+msgid "Stock updated"
+msgstr "Bestand aktualisiert"
+
+#: longclaw/orders/models.py:27
+msgid "Transaction ID"
+msgstr "Transaktions-ID"
+
+#: longclaw/orders/models.py:30
+msgid "Email"
+msgstr "E-Mail"
+
+#: longclaw/orders/models.py:31
+msgid "IP address"
+msgstr "IP-Adresse"
+
+#: longclaw/orders/models.py:36 longclaw/orders/views.py:110
+msgid "Shipping address"
+msgstr "Lieferadresse"
+
+#: longclaw/orders/models.py:42
+msgid "Billing address"
+msgstr "Rechnungsadresse"
+
+#: longclaw/orders/models.py:50 longclaw/orders/views.py:113
+msgid "Shipping rate"
+msgstr "Versandkosten"
+
+#: longclaw/orders/models.py:54
+#, python-brace-format
+msgid "Order #{order_id} - {email}"
+msgstr "Bestellung #{order_id} - {email}"
+
+#: longclaw/orders/models.py:82
+msgid "Refunded on {}"
+msgstr "zurückerstattet am {}"
+
+#: longclaw/orders/models.py:85
+msgid "Refund failed on {}"
+msgstr "zurückerstattung fehlgeschlagen am {}"
+
+#: longclaw/orders/models.py:128
+msgid "Can fulfill orders"
+msgstr "darf Bestellungen auf \"bezahlt\" setzen"
+
+#: longclaw/orders/models.py:129
+msgid "Can cancel orders"
+msgstr "darf Bestellungen stornieren"
+
+#: longclaw/orders/models.py:130
+msgid "Can refund orders"
+msgstr "darf Bestellungen zurückerstatten"
+
+#: longclaw/orders/models.py:132 longclaw/orders/models.py:139
+msgid "Order"
+msgstr "Bestellungen"
+
+#: longclaw/orders/models.py:137
+#: longclaw/orders/templates/orders/order_detail.html:17
+msgid "Product"
+msgstr "Produkt"
+
+#: longclaw/orders/models.py:138
+msgid "Quantity"
+msgstr ""
+
+#: longclaw/orders/models.py:149
+msgid "Order Item"
+msgstr "Posten"
+
+#: longclaw/orders/models.py:150
+#: longclaw/orders/templates/orders/order_detail.html:13
+msgid "Order Items"
+msgstr "Bestellpositionen"
+
+#: longclaw/orders/templates/orders/order_detail.html:18
+msgid "Amount"
+msgstr "Menge"
+
+#: longclaw/orders/templates/orders/order_detail.html:19
+msgid "Price"
+msgstr "Preis"
+
+#: longclaw/orders/templates/orders/order_detail.html:33
+#: longclaw/orders/views.py:115
+msgid "Total"
+msgstr "Gesamt"
+
+#: longclaw/orders/templates/orders/order_detail.html:50
+msgid "Save changes"
+msgstr "Änderungen speichern"
+
+#: longclaw/orders/views.py:34
+msgid "Details"
+msgstr "Details"
+
+#: longclaw/orders/views.py:38
+msgid "Show order details"
+msgstr "Bestelldetails anzeigen"
+
+#: longclaw/orders/views.py:44
+msgid "Cancel"
+msgstr "stornieren"
+
+#: longclaw/orders/views.py:48
+msgid "Cancel this order"
+msgstr "Bestellung stornieren"
+
+#: longclaw/orders/views.py:54
+msgid "Fulfill"
+msgstr "auf \"bezahlt\" setzen"
+
+#: longclaw/orders/views.py:58
+msgid "Fulfill this order"
+msgstr "Bestellung auf \"bezahlt\" setzen"
+
+#: longclaw/orders/views.py:64
+msgid "Refund"
+msgstr "zurückerstatten"
+
+#: longclaw/orders/views.py:68
+msgid "Refund this order"
+msgstr "Bestellung zurückerstatten"
+
+#: longclaw/orders/views.py:80
+#, python-format
+msgid "More options for '%(title)s'"
+msgstr "Mehr Optionen für '%(title)s'"
+
+#: longclaw/orders/views.py:114
+msgid "Total items"
+msgstr "Artikel"
+
+#: longclaw/orders/views.py:128
+msgid "Order details"
+msgstr "Bestelldetails"
+
+#: longclaw/orders/views.py:148
+msgid "Order updated"
+msgstr "Bestellung aktualisiert"

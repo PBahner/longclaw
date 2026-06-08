@@ -2,6 +2,7 @@ import datetime
 
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
+from django.utils.translation import gettext_lazy as _
 
 from wagtail import hooks
 from wagtail.admin.ui.components import Component
@@ -19,7 +20,7 @@ class LongclawSiteSummary(Component):
         orders = Order.objects.filter(status=Order.SUBMITTED)
         return {
             "total": orders.count(),
-            "label": "Outstanding Orders",
+            "label": _("Outstanding Orders"),
             "url": "/admin/orders/",
         }
 
@@ -31,7 +32,7 @@ class LongclawSiteSummary(Component):
             count = ProductVariant.objects.all().count()
         return {
             "total": count,
-            "label": "Products",
+            "label": _("Products"),
         }
 
     def sales_count(self, parent_context):
@@ -39,7 +40,7 @@ class LongclawSiteSummary(Component):
         sales = stats.sales_for_time_period(*stats.current_month())
         return {
             "total": mark_safe(f"{settings.currency_html_code}{sum(order.total for order in sales)}"),
-            "label": "In sales this month",
+            "label": _("In sales this month"),
             "url": "/admin/orders/",
         }
 

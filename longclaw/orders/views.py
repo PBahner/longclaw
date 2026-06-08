@@ -31,41 +31,41 @@ class OrderActionsColumn(ButtonsColumnMixin, TitleColumn):
         if user.has_perm("longclaw_orders.change_order"):
             buttons.append(
                 Button(
-                    label="Details",
+                    label=_("Details"),
                     icon_name="edit",
                     url=reverse("orders:detail", args=[instance.pk]),
                     priority=40,
-                    attrs={"title": "Show order details"},
+                    attrs={"title": _("Show order details")},
                 )
             )
         if user.has_perm("longclaw_orders.cancel_order"):
             buttons.append(
                 Button(
-                    label="Cancel",
+                    label=_("Cancel"),
                     icon_name="cross",
                     url=reverse("orders:cancel", args=[instance.pk]),
                     priority=50,
-                    attrs={"title": "Cancel this order"},
+                    attrs={"title": _("Cancel this order")},
                 )
             )
         if user.has_perm("longclaw_orders.fulfill_order"):
             buttons.append(
                 Button(
-                    label="Fulfill",
+                    label=_("Fulfill"),
                     icon_name="check",
                     url=reverse("orders:fulfill", args=[instance.pk]),
                     priority=60,
-                    attrs={"title": "Fulfill this order"},
+                    attrs={"title": _("Fulfill this order")},
                 )
             )
         if user.has_perm("longclaw_orders.refund_order"):
             buttons.append(
                 Button(
-                    label="Refund",
+                    label=_("Refund"),
                     icon_name="expand-right",
                     url=reverse("orders:refund", args=[instance.pk]),
                     priority=70,
-                    attrs={"title": "Refund this order"},
+                    attrs={"title": _("Refund this order")},
                 )
             )
 
@@ -87,7 +87,7 @@ class OrderActionsColumn(ButtonsColumnMixin, TitleColumn):
 
 class OrderListView(PermissionRequiredMixin, IndexView):
     model = Order
-    page_title = "Orders"
+    page_title = _("Orders")
     paginate_by = 25
     ordering = "-created_date"
     inspect_url_name = "orders:detail"
@@ -105,14 +105,14 @@ class OrderListView(PermissionRequiredMixin, IndexView):
             accessor=lambda o: f"#{o.id}",
         ),
         # OrderActionsColumn("actions"),
-        StatusColumn("status"),
-        Column("status_note"),
-        Column("shipping_address"),
-        Column("created_date"),
-        Column("payment_date"),
-        Column("shipping_rate"),
-        Column("total_items"),
-        Column("total"),
+        StatusColumn("status", label=_("Status")),
+        Column("status_note", label=_("Status note")),
+        Column("shipping_address", label=_("Shipping address")),
+        Column("created_date", label=_("Created date")),
+        Column("payment_date", label=_("Payment date")),
+        Column("shipping_rate", label=_("Shipping rate")),
+        Column("total_items", label=_("Total items")),
+        Column("total", label=_("Total")),
     ]
 
     def has_permission(self):
@@ -125,7 +125,7 @@ class OrderListView(PermissionRequiredMixin, IndexView):
 class OrderDetailView(PermissionRequiredMixin, WagtailAdminTemplateMixin, DetailView):
     model = Order
     template_name = "orders/order_detail.html"
-    page_title = "Order details"
+    page_title = _("Order details")
     permission_required = "longclaw_orders.change_order"
 
     def get_context_data(self, **kwargs):
@@ -145,7 +145,7 @@ class OrderDetailView(PermissionRequiredMixin, WagtailAdminTemplateMixin, Detail
 
         if form.is_valid():
             form.save()
-            success(request, "Order updated")
+            success(request, _("Order updated"))
             return redirect(request.path)
 
         return self.get(request, *args, **kwargs)
