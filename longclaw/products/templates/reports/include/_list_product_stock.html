@@ -1,0 +1,20 @@
+{% extends 'wagtailadmin/reports/listing/_list_page_report.html' %}
+{% load i18n %}
+
+{% block extra_columns %}
+    <th style="width: 5%">{% trans "Variant" %}</th>
+    <th style="width: 5%">{% trans "Stock" %}</th>
+    <th style="width: 5%">{% trans "Price" %}</th>
+{% endblock %}
+
+{% block extra_page_data %}
+    <td>
+        {{ page.variant.ref }}
+    </td>
+    <td>
+        <b>{{ page.variant.stock }}</b>
+    </td>
+    <td>
+        {{ page.variant.base_price }}
+    </td>
+{% endblock %}
