@@ -17,12 +17,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python: ["3.9", "3.10", "3.11"]
+        python: ["3.10", "3.11", "3.12", "3.13", "3.14"]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
       - name: Install NPM and dependencies
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v6
         with:
           node-version: '12.x'
       - name: Build client
@@ -30,14 +30,14 @@ jobs:
           npm install --prefix ./longclaw/client
           npm run build --prefix ./longclaw/client
       - name: Upload client
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v7
         with:
           name: client
           path: ./longclaw/core/static/core/js
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
       - name: Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python }}
       - name: Install dependencies
@@ -45,7 +45,7 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install tox tox-gh-actions
       - name: Download client
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v8
         with:
           name: client
           path: ./longclaw/core/static/core/js
