@@ -6,7 +6,6 @@ from django.views import View
 from django.utils.translation import gettext_lazy as _
 from wagtail.admin import messages
 
-from wagtail.admin.ui.tables import UpdatedAtColumn
 from wagtail.admin.viewsets.base import ViewSet
 
 from longclaw.orders.models import Order

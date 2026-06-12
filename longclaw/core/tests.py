@@ -1,4 +1,3 @@
-import os
 from django.test import TestCase
 from django.contrib.staticfiles import finders
 

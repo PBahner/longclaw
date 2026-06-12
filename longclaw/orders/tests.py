@@ -1,13 +1,10 @@
-import mock
-
-from django.test import TestCase
-from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 
-from wagtail.tests.utils import WagtailTestUtils
+from wagtail.test.utils import WagtailTestUtils
+
+from longclaw.orders.admin import OrderViewSet
 from longclaw.tests.utils import LongclawTestCase, OrderFactory
-from longclaw.orders.wagtail_hooks import OrderModelAdmin
 
 class OrderTests(LongclawTestCase):
 
@@ -42,18 +39,15 @@ class TestOrderView(LongclawTestCase, WagtailTestUtils):
 
     def setUp(self):
         self.login()
-        self.model_admin = OrderModelAdmin()
+        self.view_set = OrderViewSet("orders")
 
     def test_order_index_view(self):
-        """
-        Test the index view
-        """
-        name = self.model_admin.url_helper.get_action_url_name('index')
+        name = self.view_set.get_url_name('list')
         response = self.client.get(reverse_lazy(name))
         self.assertEqual(response.status_code, 200)
 
     def test_order_detail_view(self):
         order = OrderFactory()
-        name = self.model_admin.url_helper.get_action_url_name('detail')
-        response = self.client.get(reverse_lazy(name, kwargs={'instance_pk': order.pk}))
+        name = self.view_set.get_url_name('detail')
+        response = self.client.get(reverse_lazy(name, args=[order.pk]))
         self.assertEqual(response.status_code, 200)

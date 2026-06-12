@@ -36,7 +36,9 @@ class CountryFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Country
 
-    iso = factory.Faker('pystr', max_chars=2, min_chars=2)
+    iso = factory.Iterator(
+        ["GB", "DE", "FR", "ES", "IT", "NL", "BE", "SE", "DK", "FI", "IE", "AT", "CH", "LU", "PT", "GR"]
+    )
     name_official = factory.Faker('text', max_nb_chars=128)
     name = factory.Faker('text', max_nb_chars=128)
 

@@ -1,10 +1,10 @@
-from wagtail.tests.utils import WagtailPageTests
+from wagtail.test.utils import WagtailPageTestCase
 from longclaw.utils import maybe_get_product_model
 from longclaw.tests.testproducts.models import ProductIndex
 from longclaw.tests.utils import ProductVariantFactory
 from longclaw.products.serializers import ProductVariantSerializer
 
-class TestProducts(WagtailPageTests):
+class TestProducts(WagtailPageTestCase):
 
     def setUp(self):
         self.product_model = maybe_get_product_model()

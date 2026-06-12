@@ -55,6 +55,8 @@ class ShippingRate(models.Model):
 
 @receiver(address_modified)
 def clear_address_rates(sender, instance, **kwargs):
+    if not getattr(instance, 'pk', None):
+        return
     ShippingRate.objects.filter(destination=instance).delete()
 
 
