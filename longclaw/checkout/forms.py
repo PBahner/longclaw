@@ -9,7 +9,12 @@ class CheckoutForm(forms.Form):
     Captures extra info required for checkout
     """
     email = forms.EmailField(label=_('Email'))
-    shipping_option = forms.ModelChoiceField(label=_('Shipping Option'), queryset=ShippingRate.objects.all(), empty_label=None)
+    shipping_option = forms.ModelChoiceField(
+        label=_('Shipping Option'),
+        queryset=ShippingRate.objects.all(),
+        required=False,
+        empty_label=None
+    )
     different_billing_address = forms.BooleanField(label=_('Different Billing Address'), required=False)
     class Media:
         js = ('checkout.js',)
