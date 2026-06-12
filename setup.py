@@ -87,10 +87,7 @@ setup(
     ],
     include_package_data=True,
     install_requires=[
-        "django~=4.2",
-        "django~=5.1",
-        "django~=5.2",
-        "django~=6.0",
+        "django>=4.2,django<6.1",
         "wagtail~=7.0",
         'django-countries',
         'django-extensions',

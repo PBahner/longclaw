@@ -11,4 +11,6 @@ Contributors
 ------------
 
 * Alex (https://github.com/alexfromvl)
+* Nick (https://github.com/nickmoreton)
+* Timo (https://github.com/pbahner)
 
