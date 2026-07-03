@@ -41,7 +41,7 @@ msgstr "Ort"
 
 #: longclaw/shipping/models/locations.py:12
 msgid "Postcode"
-msgstr "Postleizahl"
+msgstr "Postleitzahl"
 
 #: longclaw/shipping/models/locations.py:30
 msgid "Address"
