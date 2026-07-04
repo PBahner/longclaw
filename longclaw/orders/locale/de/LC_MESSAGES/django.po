@@ -2,12 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-08 16:01-0500\n"
+"POT-Creation-Date: 2026-07-03 16:47-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,54 +18,79 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: longclaw/orders/admin.py:21
+#: longclaw/orders/admin.py:20
 msgid "You do not have permission to fulfill orders."
 msgstr "Du hast keine Berechtigung, Bestellungen auf \"bezahlt\" zu setzen."
 
-#: longclaw/orders/admin.py:32
+#: longclaw/orders/admin.py:31
 #, python-brace-format
 msgid "Order #{order_id} has been successfully fulfilled"
 msgstr "Bestellung #{order_id} wurde erfolgreich auf \"bezahlt\" gesetzt."
 
-#: longclaw/orders/admin.py:34
+#: longclaw/orders/admin.py:33
 #, python-brace-format
 msgid "Failed to fulfill order #{order_id}: {exc}"
 msgstr ""
 "Bestellung #{order_id} konnte nicht auf \"bezahlt\" gesetzt werden: {exc}"
 
-#: longclaw/orders/admin.py:44
+#: longclaw/orders/admin.py:43
 msgid "You do not have permission to cancel orders."
 msgstr "Du hast keine Berechtigung, Bestellungen zu stornieren."
 
-#: longclaw/orders/admin.py:55
+#: longclaw/orders/admin.py:54
 #, python-brace-format
 msgid "Order #{order_id} has been successfully cancelled"
 msgstr "Bestellung #{order_id} wurde erfolgreich storniert."
 
-#: longclaw/orders/admin.py:57
+#: longclaw/orders/admin.py:56
 #, python-brace-format
 msgid "Failed to cancel order #{order_id}: {exc}"
 msgstr "Bestellung #{order_id} konnte nicht storniert werden: {exc}"
 
-#: longclaw/orders/admin.py:67
+#: longclaw/orders/admin.py:66
 msgid "You do not have permission to refund orders."
 msgstr "Du hast keine Berechtigung, Bestellungen zurückzuerstatten."
 
-#: longclaw/orders/admin.py:78
+#: longclaw/orders/admin.py:77
 #, python-brace-format
 msgid "Order #{order_id} has been successfully refunded"
 msgstr "Bestellung #{order_id} wurde erfolgreich zurückerstattet."
 
-#: longclaw/orders/admin.py:80
+#: longclaw/orders/admin.py:79
 #, python-brace-format
 msgid "Failed to refund order #{order_id}: {exc}"
 msgstr "Bestellung #{order_id} konnte nicht zurückerstattet werden: {exc}"
 
-#: longclaw/orders/admin.py:88 longclaw/orders/models.py:133
+#: longclaw/orders/admin.py:87 longclaw/orders/models.py:133
 #: longclaw/orders/views.py:90 longclaw/orders/views.py:155
 #: longclaw/orders/wagtail_hooks.py:36
 msgid "Orders"
 msgstr "Bestellungen"
+
+#: longclaw/orders/models.py:16
+msgctxt "order_status"
+msgid "Submitted"
+msgstr "eingegangen"
+
+#: longclaw/orders/models.py:17
+msgctxt "order_status"
+msgid "Fulfilled"
+msgstr "bezahlt"
+
+#: longclaw/orders/models.py:18
+msgctxt "order_status"
+msgid "Cancelled"
+msgstr "storniert"
+
+#: longclaw/orders/models.py:19
+msgctxt "order_status"
+msgid "Refunded"
+msgstr "zurückerstattet"
+
+#: longclaw/orders/models.py:20
+msgctxt "order_status"
+msgid "Payment Failed"
+msgstr "Zahlung fehlgeschlagen"
 
 #: longclaw/orders/models.py:21 longclaw/orders/views.py:112
 msgid "Payment date"
@@ -116,10 +142,12 @@ msgid "Order #{order_id} - {email}"
 msgstr "Bestellung #{order_id} - {email}"
 
 #: longclaw/orders/models.py:82
+#, python-brace-format
 msgid "Refunded on {}"
 msgstr "zurückerstattet am {}"
 
 #: longclaw/orders/models.py:85
+#, python-brace-format
 msgid "Refund failed on {}"
 msgstr "zurückerstattung fehlgeschlagen am {}"
 
@@ -175,6 +203,7 @@ msgid "Save changes"
 msgstr "Änderungen speichern"
 
 #: longclaw/orders/views.py:34
+msgctxt "order_action"
 msgid "Details"
 msgstr "Details"
 
@@ -183,6 +212,7 @@ msgid "Show order details"
 msgstr "Bestelldetails anzeigen"
 
 #: longclaw/orders/views.py:44
+msgctxt "order_action"
 msgid "Cancel"
 msgstr "stornieren"
 
@@ -191,6 +221,7 @@ msgid "Cancel this order"
 msgstr "Bestellung stornieren"
 
 #: longclaw/orders/views.py:54
+msgctxt "order_action"
 msgid "Fulfill"
 msgstr "auf \"bezahlt\" setzen"
 
@@ -199,6 +230,7 @@ msgid "Fulfill this order"
 msgstr "Bestellung auf \"bezahlt\" setzen"
 
 #: longclaw/orders/views.py:64
+msgctxt "order_action"
 msgid "Refund"
 msgstr "zurückerstatten"
 

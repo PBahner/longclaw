@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-08 05:23-0500\n"
+"POT-Creation-Date: 2026-07-03 14:32-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,11 +22,11 @@ msgstr ""
 msgid "Email"
 msgstr "E-Mail"
 
-#: longclaw/checkout/forms.py:12
+#: longclaw/checkout/forms.py:13
 msgid "Shipping Option"
 msgstr "Lieferoption"
 
-#: longclaw/checkout/forms.py:13
+#: longclaw/checkout/forms.py:18
 msgid "Different Billing Address"
 msgstr "Abweichende Rechnungsadresse"
 

@@ -1,7 +1,7 @@
 from datetime import datetime
 from django.db import models
 from django.db.models import F
-from django.utils.translation import gettext_lazy as _, pgettext_lazy as _p
+from django.utils.translation import gettext_lazy as _, pgettext_lazy
 from longclaw.configuration.models import Configuration
 from longclaw.settings import PRODUCT_VARIANT_MODEL
 from longclaw.shipping.models import Address
@@ -13,11 +13,11 @@ class Order(models.Model):
     CANCELLED = 3
     REFUNDED = 4
     FAILURE = 5
-    ORDER_STATUSES = ((SUBMITTED, _p("order_status", "Submitted")),
-                      (FULFILLED, _p("order_status", "Fulfilled")),
-                      (CANCELLED, _p("order_status", "Cancelled")),
-                      (REFUNDED, _p("order_status", "Refunded")),
-                      (FAILURE, _p("order_status", "Payment Failed")))
+    ORDER_STATUSES = ((SUBMITTED, pgettext_lazy("order_status", "Submitted")),
+                      (FULFILLED, pgettext_lazy("order_status", "Fulfilled")),
+                      (CANCELLED, pgettext_lazy("order_status", "Cancelled")),
+                      (REFUNDED, pgettext_lazy("order_status", "Refunded")),
+                      (FAILURE, pgettext_lazy("order_status", "Payment Failed")))
     payment_date = models.DateTimeField(blank=True, null=True, verbose_name=_("Payment date"))
     created_date = models.DateTimeField(auto_now_add=True, verbose_name=_("Created date"))
     status = models.IntegerField(choices=ORDER_STATUSES, default=SUBMITTED, verbose_name=_("Status"))

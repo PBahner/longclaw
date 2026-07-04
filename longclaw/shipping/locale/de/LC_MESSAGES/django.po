@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-08 15:55-0500\n"
+"POT-Creation-Date: 2026-07-03 14:32-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -106,7 +106,7 @@ msgstr "Versandkosten"
 msgid "Shipping Rates"
 msgstr "Versandkosten"
 
-#: longclaw/shipping/utils.py:29
+#: longclaw/shipping/utils.py:30
 msgid "Standard shipping to rest of world"
 msgstr "Standardversand für den Rest der Welt"
 

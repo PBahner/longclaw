@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import DetailView
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy as _, pgettext_lazy
 from wagtail.admin.messages import success
 from wagtail.admin.views.generic import IndexView, WagtailAdminTemplateMixin
 from wagtail.admin.ui.tables import Column, TitleColumn, StatusTagColumn, BulkActionsCheckboxColumn, ButtonsColumnMixin
@@ -31,7 +31,7 @@ class OrderActionsColumn(ButtonsColumnMixin, TitleColumn):
         if user.has_perm("longclaw_orders.change_order"):
             buttons.append(
                 Button(
-                    label=_("Details"),
+                    label=pgettext_lazy("order_action", "Details"),
                     icon_name="edit",
                     url=reverse("orders:detail", args=[instance.pk]),
                     priority=40,
@@ -41,7 +41,7 @@ class OrderActionsColumn(ButtonsColumnMixin, TitleColumn):
         if user.has_perm("longclaw_orders.cancel_order"):
             buttons.append(
                 Button(
-                    label=_("Cancel"),
+                    label=pgettext_lazy("order_action", "Cancel"),
                     icon_name="cross",
                     url=reverse("orders:cancel", args=[instance.pk]),
                     priority=50,
@@ -51,7 +51,7 @@ class OrderActionsColumn(ButtonsColumnMixin, TitleColumn):
         if user.has_perm("longclaw_orders.fulfill_order"):
             buttons.append(
                 Button(
-                    label=_("Fulfill"),
+                    label=pgettext_lazy("order_action", "Fulfill"),
                     icon_name="check",
                     url=reverse("orders:fulfill", args=[instance.pk]),
                     priority=60,
@@ -61,7 +61,7 @@ class OrderActionsColumn(ButtonsColumnMixin, TitleColumn):
         if user.has_perm("longclaw_orders.refund_order"):
             buttons.append(
                 Button(
-                    label=_("Refund"),
+                    label=pgettext_lazy("order_action", "Refund"),
                     icon_name="expand-right",
                     url=reverse("orders:refund", args=[instance.pk]),
                     priority=70,
