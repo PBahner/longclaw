@@ -35,6 +35,7 @@ def create_order_with_token(request):
         address = request.data['address']
         shipping_option = request.data.get('shipping_option', None)
         email = request.data['email']
+        customer_note = request.data.get('customer_note', None)
         transaction_id = request.data['transaction_id']
     except KeyError:
         return Response(data={"message": "Missing parameters from request data"},
@@ -44,6 +45,7 @@ def create_order_with_token(request):
     order = create_order(
         email,
         request,
+        customer_note=customer_note,
         addresses=address,
         shipping_option=shipping_option,
     )
@@ -83,12 +85,14 @@ def capture_payment(request):
     # get request data
     address = request.data['address']
     email = request.data.get('email', None)
+    customer_note = request.data.get('customer_note', None)
     shipping_option = request.data.get('shipping_option', None)
 
     # Capture the payment
     order = create_order(
         email,
         request,
+        customer_note=customer_note,
         addresses=address,
         shipping_option=shipping_option,
         capture_payment=True

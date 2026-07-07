@@ -45,7 +45,27 @@ class CheckoutApiTest(LongclawTestCase):
     def test_create_order(self):
         BasketItemFactory(basket_id=self.basket_id),
         BasketItemFactory(basket_id=self.basket_id)
-        order = create_order(self.email, self.request, self.addresses, capture_payment=True)
+        order = create_order(
+            self.email,
+            self.request,
+            addresses=self.addresses,
+            capture_payment=True
+        )
+        self.assertIsNotNone(order)
+        self.assertIsNotNone(order.payment_date)
+        self.assertEqual(self.email, order.email)
+        self.assertEqual(order.items.count(), 2)
+
+    def test_create_order_with_customer_note(self):
+        BasketItemFactory(basket_id=self.basket_id),
+        BasketItemFactory(basket_id=self.basket_id)
+        order = create_order(
+            self.email,
+            self.request,
+            "Test Customer Note",
+            addresses=self.addresses,
+            capture_payment=True
+        )
         self.assertIsNotNone(order)
         self.assertIsNotNone(order.payment_date)
         self.assertEqual(self.email, order.email)
@@ -110,7 +130,7 @@ class CheckoutApiShippingTest(LongclawTestCase):
             shipping_option=rate.name,
         )
         self.assertEqual(order.shipping_rate, amount)
-    
+
     def test_create_order_with_address_shipping_option(self):
         amount = 12
         rate = ShippingRate.objects.create(
@@ -128,7 +148,7 @@ class CheckoutApiShippingTest(LongclawTestCase):
             shipping_option=rate.name,
         )
         self.assertEqual(order.shipping_rate, amount)
-    
+
     def test_create_order_with_address_and_basket_shipping_option(self):
         amount = 13
         rate = ShippingRate.objects.create(

@@ -15,6 +15,7 @@ from longclaw.utils import GATEWAY
 
 def create_order(email,
                  request,
+                 customer_note=None,
                  addresses=None,
                  shipping_address=None,
                  billing_address=None,
@@ -76,6 +77,7 @@ def create_order(email,
 
     order = Order(
         email=email,
+        customer_note=customer_note,
         ip_address=ip_address,
         shipping_address=shipping_address,
         billing_address=billing_address,

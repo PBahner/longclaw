@@ -1,4 +1,5 @@
 # orders/forms.py
+from django.forms.widgets import Textarea
 from wagtail.admin.forms import WagtailAdminModelForm
 from wagtail.admin.widgets import AdminDateTimeInput
 from wagtail.snippets.widgets import AdminSnippetChooser
@@ -14,12 +15,14 @@ class OrderAdminForm(WagtailAdminModelForm):
             "status",
             "payment_date",
             "status_note",
+            "customer_note",
             "shipping_rate",
             "shipping_address",
             "billing_address",
         ]
         widgets = {
             "payment_date": AdminDateTimeInput(),
+            "customer_note": Textarea(attrs={"rows": 4}),
             "shipping_address": AdminSnippetChooser(Address, icon=AddressViewSet.icon),
             "billing_address": AdminSnippetChooser(Address, icon=AddressViewSet.icon),
         }

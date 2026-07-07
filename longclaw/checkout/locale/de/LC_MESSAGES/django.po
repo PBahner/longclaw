@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-03 14:32-0500\n"
+"POT-Creation-Date: 2026-07-07 13:26-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,7 +30,11 @@ msgstr "Lieferoption"
 msgid "Different Billing Address"
 msgstr "Abweichende Rechnungsadresse"
 
-#: longclaw/checkout/utils.py:101
+#: longclaw/checkout/forms.py:19
+msgid "Notes"
+msgstr "Bemerkungen"
+
+#: longclaw/checkout/utils.py:103
 #, python-brace-format
 msgid "Payment from {email} for order id #{order_id}"
 msgstr "Bezahlung von {email} für Bestelllung #{order_id}"

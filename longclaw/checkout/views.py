@@ -50,8 +50,12 @@ class CheckoutView(TemplateView):
         if all_ok:
             email = checkout_form.cleaned_data['email']
             shipping_option = checkout_form.cleaned_data.get(
-                'shipping_option', None)
+                'shipping_option', None
+            )
             shipping_address = shipping_form.save()
+            customer_note = checkout_form.cleaned_data.get(
+                'customer_note', None
+            )
 
             if checkout_form.cleaned_data['different_billing_address']:
                 billing_form = context['billing_form']
@@ -65,6 +69,7 @@ class CheckoutView(TemplateView):
             order = create_order(
                 email,
                 request,
+                customer_note=customer_note,
                 shipping_address=shipping_address,
                 billing_address=billing_address,
                 shipping_option=shipping_option,

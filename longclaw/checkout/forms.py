@@ -16,5 +16,6 @@ class CheckoutForm(forms.Form):
         empty_label=None
     )
     different_billing_address = forms.BooleanField(label=_('Different Billing Address'), required=False)
+    customer_note = forms.CharField(label=_('Notes'), required=False, widget=forms.Textarea(attrs={'rows': 4}))
     class Media:
         js = ('checkout.js',)
