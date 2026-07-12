@@ -20,6 +20,7 @@ class Order(models.Model):
                       (FAILURE, pgettext_lazy("order_status", "Payment Failed")))
     payment_date = models.DateTimeField(blank=True, null=True, verbose_name=_("Payment date"))
     created_date = models.DateTimeField(auto_now_add=True, verbose_name=_("Created date"))
+    basket_id = models.CharField(max_length=32)
     customer_note = models.TextField(blank=True, null=True, verbose_name=_("Customer note"))
     status = models.IntegerField(choices=ORDER_STATUSES, default=SUBMITTED, verbose_name=_("Status"))
     status_note = models.CharField(max_length=128, blank=True, null=True, verbose_name=_("Status note"))

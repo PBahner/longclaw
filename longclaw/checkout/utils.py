@@ -1,5 +1,4 @@
 from decimal import Decimal
-from django.utils.module_loading import import_string
 from django.utils import timezone
 from django.utils.translation import gettext as _
 from ipware import get_client_ip
@@ -75,13 +74,24 @@ def create_order(email,
     else:
         shipping_rate = Decimal(0)
 
+    # If the basket is empty this may be a duplicated request.
+    # Try to find the existing order and return it.
+    if not basket_items.exists():
+        existing = Order.objects.filter(
+            basket_id=current_basket_id,
+            email=email,
+        ).first()
+        if existing:
+            return existing
+
     order = Order(
         email=email,
         customer_note=customer_note,
+        basket_id=current_basket_id,
         ip_address=ip_address,
         shipping_address=shipping_address,
         billing_address=billing_address,
-        shipping_rate=shipping_rate
+        shipping_rate=shipping_rate,
     )
     order.save()
 
