@@ -59,6 +59,8 @@ exclude = ["longclaw.tests*"]
 
 [tool.setuptools.package-data]
 longclaw = [
+    "**/locale/*/LC_MESSAGES/*.mo",
+    "**/locale/*/LC_MESSAGES/*.po",
     "**/*.html",
     "**/*.css",
     "**/*.js",
@@ -82,4 +84,3 @@ longclaw = "longclaw.bin.longclaw:main"
 ignore = ["D203"]
 exclude = [".git", ".tox", "docs/source/conf.py", "build", "dist"]
 max-line-length = 119
-
