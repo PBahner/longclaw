@@ -41,6 +41,10 @@
         "title": "Setup",
         "sidebar_label": "Setup"
       },
+      "tutorial/integrate": {
+        "title": "Add Longclaw to your existing Wagtail project",
+        "sidebar_label": "Integrate in your existing project"
+      },
       "tutorial/introduction": {
         "title": "Longclaw Bakery Tutorial",
         "sidebar_label": "Introduction"

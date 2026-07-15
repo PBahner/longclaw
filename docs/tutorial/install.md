@@ -15,13 +15,13 @@ Start off by creating a virtual environment for your project:
 
 ```bash
   $ cd my_project_folder
-  $ virtualenv my_project
+  $ python -m venv my_project
   $ source my_project/bin/activate
 ```
 Install Longclaw into it:
 
 ```bash
-(my_project) $ pip install longclaw
+(my_project) $ pip install pbahner_longclaw
 ```
 
 Finally, use the longclaw CLI to setup your django project:
