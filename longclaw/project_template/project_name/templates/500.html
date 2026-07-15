@@ -1,11 +1,14 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+{% comment %}
+This error template is intentionally left as static HTML to ensure that it is still renderable even
+during system-wide failures such as a missing database.
+
+Any Django template tags here - including this comment - will be processed at the point of cloning
+the project template with `wagtail start`, and not during page rendering (unless escaped with
+'templatetag').
+{% endcomment %}<!DOCTYPE html>
+<html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <title>Internal server error</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>

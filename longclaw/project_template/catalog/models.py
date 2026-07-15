@@ -16,10 +16,9 @@ class Product(ProductBase):
     parent_page_types = ['catalog.ProductIndex']
     description = RichTextField()
     content_panels = ProductBase.content_panels + [
-        FieldPanel('description'),
-        InlinePanel('images', label='Images'),
+        'description',
+        'images',
         InlinePanel('variants', label='Product variants'),
-
     ]
 
     @property
