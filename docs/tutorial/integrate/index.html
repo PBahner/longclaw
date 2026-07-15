@@ -1,0 +1,136 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Add Longclaw to your existing Wagtail project · Longclaw</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;ol&gt;
+&lt;li&gt;Install Longclaw&lt;/li&gt;
+&lt;/ol&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Add Longclaw to your existing Wagtail project · Longclaw"/><meta property="og:type" content="website"/><meta property="og:url" content="https://pbahner.github.io/longclaw/index.html"/><meta property="og:description" content="&lt;ol&gt;
+&lt;li&gt;Install Longclaw&lt;/li&gt;
+&lt;/ol&gt;
+"/><meta property="og:image" content="https://pbahner.github.io/longclaw/img/shop.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://pbahner.github.io/longclaw/img/shop.png"/><link rel="shortcut icon" href="/longclaw/img/favicon/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/longclaw/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/longclaw/"><img class="logo" src="/longclaw/img/shop.png" alt="Longclaw"/><h2 class="headerTitleWithLogo">Longclaw</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/longclaw/docs/tutorial/introduction" target="_self">Docs</a></li><li class=""><a href="http://.google.com" target="_self">Demo</a></li><li class=""><a href="/longclaw/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Add Longclaw to your existing Wagtail project</h1></header><article><div><span><ol>
+<li>Install Longclaw</li>
+</ol>
+<pre><code class="hljs css language-bash">  $ pip install longclaw
+</code></pre>
+<ol start="2">
+<li>Update <code>INSTALLED_APPS</code>  in <code>settings/base.py</code></li>
+</ol>
+<pre><code class="hljs css language-python">INSTALLED_APPS = [
+    <span class="hljs-comment"># ...</span>
+    <span class="hljs-string">'longclaw.core'</span>,
+    <span class="hljs-string">'longclaw.configuration'</span>,
+    <span class="hljs-string">'longclaw.shipping'</span>,
+    <span class="hljs-string">'longclaw.products'</span>,
+    <span class="hljs-string">'longclaw.orders'</span>,
+    <span class="hljs-string">'longclaw.checkout'</span>,
+    <span class="hljs-string">'longclaw.basket'</span>,
+    <span class="hljs-string">'longclaw.stats'</span>,
+    <span class="hljs-comment"># ...</span>
+]
+</code></pre>
+<ol start="3">
+<li>Add context processor in <code>TEMPLATES</code></li>
+</ol>
+<pre><code class="hljs css language-python">TEMPLATES = [
+    {
+        <span class="hljs-string">'BACKEND'</span>: <span class="hljs-string">'django.template.backends.django.DjangoTemplates'</span>,
+        <span class="hljs-string">'DIRS'</span>: [
+            os.path.join(PROJECT_DIR, <span class="hljs-string">'templates'</span>),
+        ],
+        <span class="hljs-string">'APP_DIRS'</span>: <span class="hljs-literal">True</span>,
+        <span class="hljs-string">'OPTIONS'</span>: {
+            <span class="hljs-string">'context_processors'</span>: [
+                <span class="hljs-comment"># ...</span>
+                <span class="hljs-string">'longclaw.configuration.context_processors.currency'</span>,
+            ],
+        },
+    },
+]
+</code></pre>
+<ol start="4">
+<li>Add Longclaw to <code>urls.py</code></li>
+</ol>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">from</span> longclaw <span class="hljs-keyword">import</span> urls <span class="hljs-keyword">as</span> longclaw_urls
+
+urlpatterns = [
+    <span class="hljs-comment"># ...</span>
+    path(<span class="hljs-string">''</span>, include(longclaw_urls)),
+    path(<span class="hljs-string">''</span>, include(wagtail_urls)),
+]
+</code></pre>
+<ol start="5">
+<li>Create new app</li>
+</ol>
+<pre><code class="hljs css language-bash">  $ ./manage.py startapp webshop
+</code></pre>
+<ol start="6">
+<li>In this new app, add the following models</li>
+</ol>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">from</span> django.db <span class="hljs-keyword">import</span> models
+<span class="hljs-keyword">from</span> django_extensions.db.fields <span class="hljs-keyword">import</span> AutoSlugField
+<span class="hljs-keyword">from</span> modelcluster.fields <span class="hljs-keyword">import</span> ParentalKey
+<span class="hljs-keyword">from</span> wagtail.models <span class="hljs-keyword">import</span> Page, Orderable
+<span class="hljs-keyword">from</span> wagtail.fields <span class="hljs-keyword">import</span> RichTextField
+<span class="hljs-keyword">from</span> wagtail.admin.edit_handlers <span class="hljs-keyword">import</span> FieldPanel, InlinePanel
+<span class="hljs-keyword">from</span> wagtail.images.edit_handlers <span class="hljs-keyword">import</span> ImageChooserPanel
+<span class="hljs-keyword">from</span> longclaw.products.models <span class="hljs-keyword">import</span> ProductVariantBase, ProductBase
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductIndex</span><span class="hljs-params">(Page)</span>:</span>
+    <span class="hljs-string">"""Index page for all products
+    """</span>
+    subpage_types = (<span class="hljs-string">'webshop.Product'</span>, <span class="hljs-string">'webshop.ProductIndex'</span>)
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Product</span><span class="hljs-params">(ProductBase)</span>:</span>
+    parent_page_types = [<span class="hljs-string">'webshop.ProductIndex'</span>]
+    description = RichTextField()
+    content_panels = ProductBase.content_panels + [
+        FieldPanel(<span class="hljs-string">'description'</span>),
+        InlinePanel(<span class="hljs-string">'variants'</span>, label=<span class="hljs-string">'Product variants'</span>),
+
+    ]
+
+<span class="hljs-meta">    @property</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">first_image</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> self.images.first()
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductVariant</span><span class="hljs-params">(ProductVariantBase)</span>:</span>
+    <span class="hljs-string">"""Represents a 'variant' of a product
+    """</span>
+    <span class="hljs-comment"># You *could* do away with the 'Product' concept entirely - e.g. if you only</span>
+    <span class="hljs-comment"># want to support 1 'variant' per 'product'.</span>
+    product = ParentalKey(Product, related_name=<span class="hljs-string">'variants'</span>)
+
+    slug = AutoSlugField(
+        separator=<span class="hljs-string">''</span>,
+        populate_from=(<span class="hljs-string">'product'</span>, <span class="hljs-string">'ref'</span>),
+        )
+
+    <span class="hljs-comment"># Enter your custom product variant fields here</span>
+    <span class="hljs-comment"># e.g. colour, size, stock and so on.</span>
+    <span class="hljs-comment"># Remember, ProductVariantBase provides 'price', 'ref' and 'stock' fields</span>
+    description = RichTextField()
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductImage</span><span class="hljs-params">(Orderable)</span>:</span>
+    <span class="hljs-string">"""Example of adding images related to a product model
+    """</span>
+    product = ParentalKey(Product, related_name=<span class="hljs-string">'images'</span>)
+    image = models.ForeignKey(<span class="hljs-string">'wagtailimages.Image'</span>, on_delete=models.CASCADE, related_name=<span class="hljs-string">'+'</span>)
+    caption = models.CharField(blank=<span class="hljs-literal">True</span>, max_length=<span class="hljs-number">255</span>)
+
+    panels = [
+        ImageChooserPanel(<span class="hljs-string">'image'</span>),
+        FieldPanel(<span class="hljs-string">'caption'</span>)
+    ]
+</code></pre>
+<p>Make sure to update <code>webshop</code> to your app name in <code>subpage_types</code> and <code>parent_page_types</code>.
+Also, make sure to add templates for the <code>ProductIndex</code> and <code>Product</code> pages.
+A basic example you can find on <a href="https://github.com/JamesRamm/longclaw/tree/master/longclaw/project_template/catalog/templates/catalog">the repo</a></p>
+<p>We'll be building on top these basic templates in the next section.</p>
+<ol start="7">
+<li>Add Longclaw specific settings</li>
+</ol>
+<pre><code class="hljs css language-python">PRODUCT_VARIANT_MODEL = <span class="hljs-string">'webshop.ProductVariant'</span>
+PAYMENT_GATEWAY = <span class="hljs-string">'longclaw.checkout.gateways.BasePayment'</span>
+</code></pre>
+<p>We'll be covering their function in the <a href="/docs/guide/install">setup</a>.</p>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/longclaw/" class="nav-home"><img src="/longclaw/img/shop.png" alt="Longclaw" width="66" height="58"/></a><div><h5>Docs</h5><a href="/longclaw/docs/en/tutorial/introduction.html">Getting Started (or other categories)</a><a href="/longclaw/docs/en/doc2.html">Guides (or other categories)</a><a href="/longclaw/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/longclaw/en/users.html">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a></div><div><h5>More</h5><a href="/longclaw/blog">Blog</a><a href="https://github.com/JamesRamm/longclaw">GitHub</a><a class="github-button" href="https://github.com/PBahner/longclaw" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2026 James Ramm</section></footer></div></body></html>
