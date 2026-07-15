@@ -50,10 +50,19 @@ docs: ## generate Sphinx HTML documentation, including API docs
 	$(MAKE) -C docs html
 	$(BROWSER) docs/_build/html/index.html
 
-release: clean ## package and upload a release
-	python setup.py sdist upload
-	python setup.py bdist_wheel upload
+CLIENT_DIR=longclaw/client
+build-assets:
+	cd $(CLIENT_DIR) && npm ci
+	cd $(CLIENT_DIR) && npm run build
 
-sdist: clean ## package
-	python setup.py sdist
+sdist: clean build-assets ## package
+	python -m build --sdist
 	ls -l dist
+
+wheel: clean build-assets ## build wheel
+	python -m build --wheel
+	ls -l dist
+
+release: clean build-assets ## package and upload a release
+	python -m build
+	twine upload dist/*

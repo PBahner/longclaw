@@ -1,0 +1,85 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pbahner_longclaw"
+version = "7.0.0-beta.1"
+description = "A shop for wagtail cms"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+    { name = "Timo Klinge", email = "kl.timo@outlook.de" },
+    { name = "James Ramm", email = "jamessramm@gmail.com"}
+]
+requires-python = ">=3.10"
+dependencies = [
+    "django>=4.2,<6.1",
+    "wagtail~=7.0",
+    "django-countries",
+    "django-extensions",
+    "djangorestframework",
+    "django-ipware",
+    "django-polymorphic"
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Framework :: Django",
+    "Framework :: Wagtail",
+]
+
+[project.urls]
+Homepage = "https://github.com/PBahner/longclaw"
+
+[project.optional-dependencies]
+testing = [
+    "bumpversion==0.6.0",
+    "wheel",
+    "build",
+    "setuptools",
+    "twine",
+    "coverage",
+    "mock",
+    "flake8",
+    "tox",
+    "codecov",
+    "factory_boy",
+    "wagtail-factories"
+]
+
+[tool.setuptools]
+include-package-data = true
+zip-safe = false
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["longclaw*"]
+exclude = ["longclaw.tests*"]
+
+[tool.setuptools.package-data]
+longclaw = [
+    "**/*.html",
+    "**/*.css",
+    "**/*.js",
+    "**/*.png",
+    "**/*.jpg",
+    "**/*.jpeg",
+    "**/*.svg",
+    "**/*.json",
+]
+
+[tool.setuptools.exclude-package-data]
+longclaw = [
+    "client/**",
+    "tests/**",
+]
+
+[project.scripts]
+longclaw = "longclaw.bin.longclaw:main"
+
+[tool.flake8]
+ignore = ["D203"]
+exclude = [".git", ".tox", "docs/source/conf.py", "build", "dist"]
+max-line-length = 119
+
