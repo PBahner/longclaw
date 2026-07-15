@@ -5,7 +5,6 @@ from wagtail.admin.widgets import AdminDateTimeInput
 from wagtail.snippets.widgets import AdminSnippetChooser
 
 from .models import Order, Address
-from ..shipping.wagtail_hooks import AddressViewSet
 
 
 class OrderAdminForm(WagtailAdminModelForm):
@@ -23,8 +22,8 @@ class OrderAdminForm(WagtailAdminModelForm):
         widgets = {
             "payment_date": AdminDateTimeInput(),
             "customer_note": Textarea(attrs={"rows": 4}),
-            "shipping_address": AdminSnippetChooser(Address, icon=AddressViewSet.icon),
-            "billing_address": AdminSnippetChooser(Address, icon=AddressViewSet.icon),
+            "shipping_address": AdminSnippetChooser(Address, icon="form"),
+            "billing_address": AdminSnippetChooser(Address, icon= "form"),
         }
 
     def __init__(self, *args, **kwargs):
