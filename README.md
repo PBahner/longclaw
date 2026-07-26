@@ -12,7 +12,7 @@ https://github.com/JamesRamm/longclaw/issues/375
 
 An e-commerce extension for [Wagtail CMS](https://github.com/wagtail/wagtail)
 
-Checkout the [documentation](https://longclawshop.github.io/longclaw/)
+Checkout the [documentation](https://pbahner.github.io/longclaw/)
 
 ![Image of the dashboard](docs/assets/dashboard.png)
 
