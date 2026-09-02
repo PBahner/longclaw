@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy as _, pgettext_lazy
 from longclaw.configuration.models import Configuration
 from longclaw.settings import PRODUCT_VARIANT_MODEL
 from longclaw.shipping.models import Address
+from phonenumber_field.modelfields import PhoneNumberField
 from wagtail.models import Site
 
 class Order(models.Model):
@@ -30,6 +31,7 @@ class Order(models.Model):
 
     # contact info
     email = models.EmailField(max_length=128, blank=True, null=True, verbose_name=_("Email"))
+    phone_number = PhoneNumberField(blank=True, null=True, verbose_name=_("Phone number"))
     ip_address = models.GenericIPAddressField(blank=True, null=True, verbose_name=_("IP address"))
 
     # shipping info

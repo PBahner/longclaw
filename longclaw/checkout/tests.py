@@ -62,13 +62,29 @@ class CheckoutApiTest(LongclawTestCase):
         order = create_order(
             self.email,
             self.request,
-            "Test Customer Note",
+            customer_note="Test Customer Note",
             addresses=self.addresses,
             capture_payment=True
         )
         self.assertIsNotNone(order)
         self.assertIsNotNone(order.payment_date)
         self.assertEqual(self.email, order.email)
+        self.assertEqual(order.items.count(), 2)
+
+    def test_create_order_with_phone_number(self):
+        BasketItemFactory(basket_id=self.basket_id),
+        BasketItemFactory(basket_id=self.basket_id)
+        order = create_order(
+            self.email,
+            self.request,
+            phone_number="+49123456789",
+            addresses=self.addresses,
+            capture_payment=True
+        )
+        self.assertIsNotNone(order)
+        self.assertIsNotNone(order.payment_date)
+        self.assertEqual(self.email, order.email)
+        self.assertEqual(order.phone_number, "+49123456789")
         self.assertEqual(order.items.count(), 2)
 
     def test_checkout(self):

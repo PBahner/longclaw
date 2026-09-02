@@ -14,6 +14,7 @@ from longclaw.utils import GATEWAY
 
 def create_order(email,
                  request,
+                 phone_number=None,
                  customer_note=None,
                  addresses=None,
                  shipping_address=None,
@@ -80,12 +81,14 @@ def create_order(email,
         existing = Order.objects.filter(
             basket_id=current_basket_id,
             email=email,
+            phone_number=phone_number,
         ).first()
         if existing:
             return existing
 
     order = Order(
         email=email,
+        phone_number=phone_number,
         customer_note=customer_note,
         basket_id=current_basket_id,
         ip_address=ip_address,

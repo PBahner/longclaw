@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-07 13:26-0500\n"
+"POT-Creation-Date: 2026-09-01 15:57-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,23 +18,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: longclaw/checkout/forms.py:11
+#: longclaw/checkout/forms.py:12
 msgid "Email"
 msgstr "E-Mail"
 
 #: longclaw/checkout/forms.py:13
+msgid "Phone number"
+msgstr "Telefonnummer"
+
+#: longclaw/checkout/forms.py:15
 msgid "Shipping Option"
 msgstr "Lieferoption"
 
-#: longclaw/checkout/forms.py:18
+#: longclaw/checkout/forms.py:20
 msgid "Different Billing Address"
 msgstr "Abweichende Rechnungsadresse"
 
-#: longclaw/checkout/forms.py:19
+#: longclaw/checkout/forms.py:21
 msgid "Notes"
 msgstr "Bemerkungen"
 
-#: longclaw/checkout/utils.py:103
+#: longclaw/checkout/utils.py:116
 #, python-brace-format
 msgid "Payment from {email} for order id #{order_id}"
 msgstr "Bezahlung von {email} für Bestelllung #{order_id}"

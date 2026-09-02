@@ -48,8 +48,13 @@ The `catalog` folder contains a skeleton model for our product _variants_ which 
 
 ## Settings
 The `settings` module contains global configuration for our website, for both development and production.
-If you are familiar with Django, you will already know about `settings`. Longclaw introduces 2 extra settings; 
-`PAYMENT_GATEWAY` and `PRODUCT_VARIANT_MODEL`.
+If you are familiar with Django, you will already know about `settings`. Longclaw introduces 3 extra settings; 
+`PAYMENT_GATEWAY`, `PRODUCT_VARIANT_MODEL` and `LONGCLAW_REQUIRE_PHONE_NUMBER`.
+
+The `LONGCLAW_REQUIRE_PHONE_NUMBER` setting is a boolean which specifies whether we require a phone number for checkout. If set to `True`, the checkout form will require a phone number, otherwise it will be optional.
+It is recommended to set the `PHONENUMBER_DEFAULT_REGION` variable in your settings module to your country code, for example `PHONENUMBER_DEFAULT_REGION = 'GB'` for the UK. This will allow phone numbers with leading zeros.
+
+
 Note that the `PRODUCT_VARIANT_MODEL` is already pointing to `'catalog.ProductVariant'`
 
 The `PAYMENT_GATEWAY` refers to the 3rd party payment processor we which to use. Longclaw currently supports

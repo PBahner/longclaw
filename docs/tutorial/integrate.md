@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'longclaw.checkout',
     'longclaw.basket',
     'longclaw.stats',
+    'phonenumber_field',
     # ...
 ]
 ```

@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'longclaw.contrib.productrequests',
     'longclaw.tests.testproducts',
     'longclaw.tests.trivialrates',
+    'phonenumber_field',
 ]
 
 SITE_ID = 1

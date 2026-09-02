@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "longclaw.checkout",
     "longclaw.basket",
     "longclaw.stats",
+    "phonenumber_field",
 
     "wagtail.api.v2",
     "wagtail.contrib.forms",
@@ -208,3 +209,5 @@ WAGTAILDOCS_EXTENSIONS = ['csv', 'docx', 'key', 'odt', 'pdf', 'pptx', 'rtf', 'tx
 PAYMENT_GATEWAY = "longclaw.checkout.gateways.BasePayment"
 
 PRODUCT_VARIANT_MODEL = "catalog.ProductVariant"
+LONGCLAW_REQUIRE_PHONE_NUMBER = False
+PHONENUMBER_DEFAULT_REGION = "GB"

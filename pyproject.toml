@@ -21,7 +21,8 @@ dependencies = [
     "django-extensions",
     "djangorestframework",
     "django-ipware",
-    "django-polymorphic"
+    "django-polymorphic",
+    "django-phonenumber-field[phonenumberslite]~=8.5",
 ]
 classifiers = [
     "Development Status :: 3 - Alpha",

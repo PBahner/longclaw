@@ -35,6 +35,7 @@ def create_order_with_token(request):
         address = request.data['address']
         shipping_option = request.data.get('shipping_option', None)
         email = request.data['email']
+        phone_number = request.data.get('phone_number', None)
         customer_note = request.data.get('customer_note', None)
         transaction_id = request.data['transaction_id']
     except KeyError:
@@ -45,6 +46,7 @@ def create_order_with_token(request):
     order = create_order(
         email,
         request,
+        phone_number=phone_number,
         customer_note=customer_note,
         addresses=address,
         shipping_option=shipping_option,
@@ -85,6 +87,7 @@ def capture_payment(request):
     # get request data
     address = request.data['address']
     email = request.data.get('email', None)
+    phone_number = request.data.get('phone_number', None)
     customer_note = request.data.get('customer_note', None)
     shipping_option = request.data.get('shipping_option', None)
 
@@ -92,6 +95,7 @@ def capture_payment(request):
     order = create_order(
         email,
         request,
+        phone_number=phone_number,
         customer_note=customer_note,
         addresses=address,
         shipping_option=shipping_option,

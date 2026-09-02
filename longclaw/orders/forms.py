@@ -1,5 +1,6 @@
 # orders/forms.py
 from django.forms.widgets import Textarea
+from phonenumber_field.widgets import RegionalPhoneNumberWidget
 from wagtail.admin.forms import WagtailAdminModelForm
 from wagtail.admin.widgets import AdminDateTimeInput
 from wagtail.snippets.widgets import AdminSnippetChooser
@@ -16,6 +17,7 @@ class OrderAdminForm(WagtailAdminModelForm):
             "status_note",
             "customer_note",
             "shipping_rate",
+            "phone_number",
             "shipping_address",
             "billing_address",
         ]
