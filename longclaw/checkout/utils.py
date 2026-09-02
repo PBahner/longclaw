@@ -82,7 +82,7 @@ def create_order(email,
             basket_id=current_basket_id,
             email=email,
             phone_number=phone_number,
-        ).first()
+        ).last()
         if existing:
             return existing
 
