@@ -1,5 +1,7 @@
 import datetime
 from django.core.management import BaseCommand
+from django.utils import timezone
+
 from longclaw.basket.models import BasketItem
 
 class Command(BaseCommand):
@@ -15,7 +17,7 @@ class Command(BaseCommand):
     # A command must define handle()
     def handle(self, *args, **options):
         days_old = options['older_than_days']
-        today = datetime.date.today()
+        today = timezone.localtime().replace(hour=0, minute=0, second=0, microsecond=0)
         date = today - datetime.timedelta(days=days_old)
 
         qrs = BasketItem.objects.filter(date_added__lt=date)

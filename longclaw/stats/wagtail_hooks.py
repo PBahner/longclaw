@@ -1,4 +1,4 @@
-import datetime
+from datetime import timedelta, date
 
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
@@ -68,8 +68,8 @@ class LongclawStatsPanel(Component):
         month_start, month_end = stats.current_month()
         daily_sales = stats.daily_sales(month_start, month_end)
         labels = [
-            (month_start + datetime.timedelta(days=x)).strftime("%Y-%m-%d")
-            for x in range(0, datetime.datetime.now().day)
+            (month_start + timedelta(days=x)).strftime("%Y-%m-%d")
+            for x in range(0, (date.today() - month_start).days + 1)
         ]
         daily_income = [0] * len(labels)
         for k, order_group in daily_sales:

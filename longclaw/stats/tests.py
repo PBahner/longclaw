@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import timedelta
 from django.test import TestCase
 from django.utils import timezone
 
@@ -20,11 +20,13 @@ class StatsTest(TestCase):
 
     def test_sales_for_time_period(self):
         delta = timedelta(days=1)
-        sales = stats.sales_for_time_period(datetime.now() - delta, datetime.now() + delta)
+        today = timezone.localdate()
+        sales = stats.sales_for_time_period(today - delta, today + delta)
         self.assertEqual(sales.count(), 1)
 
     def test_daily_sales(self):
         delta = timedelta(days=10)
-        groups = stats.daily_sales(datetime.now() - delta, datetime.now() + delta)
+        today = timezone.localdate()
+        groups = stats.daily_sales(today - delta, today + delta)
         # We only create 1 order.
         self.assertEqual(len(list(groups)), 1)
