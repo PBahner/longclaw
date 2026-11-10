@@ -16,7 +16,7 @@ def product_requests_button(page, page_perms, is_parent=False):
     # It is generally safe to assume either the page will have a 'variants'
     #  member or will be an instance of longclaw.utils.ProductVariant
     if hasattr(page, 'variants') or isinstance(page, ProductVariant):
-        yield widgets.PageListingButton(
+        yield widgets.ListingButton(
             _("View Requests"),
             reverse('productrequests_admin', kwargs={'pk': page.id}),
             priority=40
