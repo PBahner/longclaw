@@ -42,6 +42,13 @@ coverage: ## check code coverage quickly with the default Python
 	coverage html
 	open htmlcov/index.html
 
+publish-website:
+    ifdef GIT_USER
+		cd website && export USE_SSH=true && yarn publish-gh-pages
+    else
+		echo "you need to specify your github username with 'export GIT_USER='"
+    endif
+
 docs: ## generate Sphinx HTML documentation, including API docs
 	rm -f docs/longclaw.rst
 	rm -f docs/modules.rst
