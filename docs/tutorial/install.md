@@ -21,7 +21,7 @@ Start off by creating a virtual environment for your project:
 Install Longclaw into it:
 
 ```bash
-(my_project) $ pip install pbahner_longclaw
+(my_project) $ pip install wagtail-longclaw
 ```
 
 Finally, use the longclaw CLI to setup your django project:

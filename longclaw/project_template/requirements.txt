@@ -1,1 +1,1 @@
-pbahner_longclaw
+wagtail-longclaw

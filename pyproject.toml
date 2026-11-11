@@ -5,6 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "pbahner_longclaw"
 version = "7.0.0"
+name = "wagtail-longclaw"
 description = "A shop for wagtail cms"
 readme = "README.md"
 license = "MIT"

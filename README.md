@@ -37,7 +37,7 @@ If you are interested in working on this project, please use the [Development se
 Install Longclaw:
 
 ```bash
-pip install longclaw
+pip install wagtail-longclaw
 ```
 
 Setup a Longclaw project
